@@ -1,0 +1,38 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: campus_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: campus_api
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      PORT: 5001
+      NODE_ENV: production
+      MONGO_URI: mongodb://mongo:27017/campus_safety
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: campus_client
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:
