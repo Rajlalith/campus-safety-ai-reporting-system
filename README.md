@@ -88,59 +88,42 @@ This project simulates a **real-world emergency response platform**, combining m
 
 ## 🗂️ Project Structure
 
-@startuml
+## 📂 Project Structure
+
+![Project Structure Diagram](https://www.plantuml.com/plantuml/svg/~h@startuml
 skinparam packageStyle rectangle
 skinparam arrowColor #444
 skinparam linetype ortho
 
 package "Campus-Safety-AI-Reporting-System" {
 
-    package "frontend" {
-        [Pages]
-        [Components]
-        [API Client]
-        [Socket]
+  package "frontend" {
+    [Pages] --> [API Client]
+    [Components] --> [API Client]
+    [Pages] --> [Socket]
+  }
 
-        [Pages] --> [API Client]
-        [Components] --> [API Client]
-        [Pages] --> [Socket]
-    }
+  package "backend" {
+    [Server] --> [Routes]
+    [Routes] --> [Middleware]
+    [Routes] --> [Controllers]
+    [Controllers] --> [Services]
+    [Services] --> [Models]
+    [Models] --> [Database]
+  }
 
-    package "backend" {
-        [Server]
-        [Routes]
-        [Middleware]
-        [Controllers]
-        [Services]
-        [Models]
-        [Database]
+  package "AI & MCP Layer" {
+    [MCP Orchestrator] --> [AI Service]
+    [MCP Orchestrator] --> [Vision Service]
+    [MCP Orchestrator] --> [Duplicate Detection]
+  }
 
-        [Server] --> [Routes]
-        [Routes] --> [Middleware]
-        [Routes] --> [Controllers]
-        [Controllers] --> [Services]
-        [Services] --> [Models]
-        [Models] --> [Database]
-    }
-
-    package "AI & MCP Layer" {
-        [AI Service]
-        [Vision Service]
-        [Duplicate Detection]
-        [MCP Orchestrator]
-
-        [MCP Orchestrator] --> [AI Service]
-        [MCP Orchestrator] --> [Vision Service]
-        [MCP Orchestrator] --> [Duplicate Detection]
-    }
-
-    [API Client] --> [Server]
-    [Socket] --> [Server]
-
-    [Services] --> [MCP Orchestrator]
+  [API Client] --> [Server]
+  [Socket] --> [Server]
+  [Services] --> [MCP Orchestrator]
 }
+@enduml)
 
-@enduml
 
 
 
