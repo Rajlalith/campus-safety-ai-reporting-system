@@ -88,22 +88,90 @@ This project simulates a **real-world emergency response platform**, combining m
 
 ## 🗂️ Project Structure
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/AI-Powered-blueviolet?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Real--Time-Alerts-red?style=for-the-badge" />
-</p>
+@startuml
+package "Campus-Safety-AI-Reporting-System" {
+    
+    package "backend" {
+        Dockerfile
+        package.json
+        server.js
+        
+        package "src" {
+            package "config" {
+                db.js
+            }
+            package "middleware" {
+                auth.js
+                error.js
+                upload.js
+            }
+            package "models" {
+                Admin.js
+                Alert.js
+                Incident.js
+            }
+            package "routes" {
+                admin.js
+                alerts.js
+                incidents.js
+            }
+            package "services" {
+                aiService.js
+                duplicateService.js
+                visionService.js
+            }
+            package "mcp" {
+                orchestrator.js
+                tools.js
+            }
+        }
+    }
 
-<h1 align="center">🚨 Campus Safety AI Reporting System</h1>
+    package "frontend" {
+        Dockerfile
+        index.html
+        nginx.conf
+        package.json
+        
+        package "src" {
+            package "api" {
+                admin.js
+                index.js
+            }
+            assets
+            package "components" {
+                AdminRoute.jsx
+                AlertsBanner.jsx
+                IncidentTable.jsx
+                StatCard.jsx
+            }
+            package "layouts" {
+                AdminLayout.jsx
+                AppLayout.jsx
+            }
+            package "pages" {
+                AdminAlerts.jsx
+                AdminDashboard.jsx
+                AdminIncidentDetail.jsx
+                AdminIncidents.jsx
+                AdminLogin.jsx
+                Home.jsx
+                LiveMap.jsx
+                Report.jsx
+                Track.jsx
+            }
+            socket.js
+            App.jsx
+            main.jsx
+            index.css
+        }
+    }
 
-<p align="center">
-  <b>An AI-powered, real-time campus safety reporting & alert platform</b><br/>
-  Built to help students report incidents instantly and help admins respond faster.
-</p>
+    docker-compose.yml
+    README.md
+}
+@enduml
 
-<p align="center">
-  <a href="https://github.com/Rajlalith/campus-safety-ai-reporting-system">🔗 View Repository</a>
-</p>
 
 ## 🚀 Getting Started (Docker)
 
