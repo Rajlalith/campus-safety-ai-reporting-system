@@ -93,8 +93,11 @@ This project simulates a **real-world emergency response platform**, combining m
 Campus-Safety-AI-Reporting-System
 │
 ├── frontend
+│   │
 │   ├── Pages
-│   │     ├── Home / Report / Track
+│   │     ├── Home
+│   │     ├── Report
+│   │     ├── Track
 │   │     └── Admin Pages
 │   │
 │   ├── Components
@@ -102,38 +105,35 @@ Campus-Safety-AI-Reporting-System
 │   │     ├── IncidentTable
 │   │     └── StatCard
 │   │
-│   ├── API Client  ────────────────┐
-│   └── Socket (WebSocket) ────────┐│
-│                                   ││
-│                                   ▼▼
+│   ├── API Client
+│   │     │
+│   │     └───► Backend Server (REST)
+│   │
+│   └── Socket (WebSocket)
+│         │
+│         └───► Backend Server (Real-time)
+│
 ├── backend
+│   │
 │   ├── Server (Express / Node)
-│   │        │
-│   │        ▼
-│   ├── Routes
-│   │        │
-│   │        ▼
-│   ├── Middleware
-│   │        │
-│   │        ▼
-│   ├── Controllers
-│   │        │
-│   │        ▼
-│   ├── Services
-│   │        │
-│   │        ├───────────────┐
-│   │        ▼               │
-│   ├── Models               │
-│   │        │               │
-│   │        ▼               │
-│   └── Database             │
-│                            │
-│                            ▼
-├── AI & MCP Layer
-│   ├── MCP Orchestrator
-│   │        ├── AI Service (NLP / LLM)
-│   │        ├── Vision Service (Image Analysis)
-│   │        └── Duplicate Detection
+│   │     │
+│   │     └──► Routes
+│   │           │
+│   │           └──► Middleware
+│   │                 │
+│   │                 └──► Controllers
+│   │                       │
+│   │                       └──► Services
+│   │                             │
+│   │                             ├──► Models
+│   │                             │     │
+│   │                             │     └──► Database
+│   │                             │
+│   │                             └──► MCP Orchestrator
+│   │                                   │
+│   │                                   ├──► AI Service (NLP / LLM)
+│   │                                   ├──► Vision Service (Image Analysis)
+│   │                                   └──► Duplicate Detection
 │
 └── Docker / Nginx / Deployment
 
