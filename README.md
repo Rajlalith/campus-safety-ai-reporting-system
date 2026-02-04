@@ -89,88 +89,59 @@ This project simulates a **real-world emergency response platform**, combining m
 ## 🗂️ Project Structure
 
 @startuml
+skinparam packageStyle rectangle
+skinparam arrowColor #444
+skinparam linetype ortho
+
 package "Campus-Safety-AI-Reporting-System" {
-    
-    package "backend" {
-        Dockerfile
-        package.json
-        server.js
-        
-        package "src" {
-            package "config" {
-                db.js
-            }
-            package "middleware" {
-                auth.js
-                error.js
-                upload.js
-            }
-            package "models" {
-                Admin.js
-                Alert.js
-                Incident.js
-            }
-            package "routes" {
-                admin.js
-                alerts.js
-                incidents.js
-            }
-            package "services" {
-                aiService.js
-                duplicateService.js
-                visionService.js
-            }
-            package "mcp" {
-                orchestrator.js
-                tools.js
-            }
-        }
-    }
 
     package "frontend" {
-        Dockerfile
-        index.html
-        nginx.conf
-        package.json
-        
-        package "src" {
-            package "api" {
-                admin.js
-                index.js
-            }
-            assets
-            package "components" {
-                AdminRoute.jsx
-                AlertsBanner.jsx
-                IncidentTable.jsx
-                StatCard.jsx
-            }
-            package "layouts" {
-                AdminLayout.jsx
-                AppLayout.jsx
-            }
-            package "pages" {
-                AdminAlerts.jsx
-                AdminDashboard.jsx
-                AdminIncidentDetail.jsx
-                AdminIncidents.jsx
-                AdminLogin.jsx
-                Home.jsx
-                LiveMap.jsx
-                Report.jsx
-                Track.jsx
-            }
-            socket.js
-            App.jsx
-            main.jsx
-            index.css
-        }
+        [Pages]
+        [Components]
+        [API Client]
+        [Socket]
+
+        [Pages] --> [API Client]
+        [Components] --> [API Client]
+        [Pages] --> [Socket]
     }
 
-    docker-compose.yml
-    README.md
+    package "backend" {
+        [Server]
+        [Routes]
+        [Middleware]
+        [Controllers]
+        [Services]
+        [Models]
+        [Database]
+
+        [Server] --> [Routes]
+        [Routes] --> [Middleware]
+        [Routes] --> [Controllers]
+        [Controllers] --> [Services]
+        [Services] --> [Models]
+        [Models] --> [Database]
+    }
+
+    package "AI & MCP Layer" {
+        [AI Service]
+        [Vision Service]
+        [Duplicate Detection]
+        [MCP Orchestrator]
+
+        [MCP Orchestrator] --> [AI Service]
+        [MCP Orchestrator] --> [Vision Service]
+        [MCP Orchestrator] --> [Duplicate Detection]
+    }
+
+    [API Client] --> [Server]
+    [Socket] --> [Server]
+
+    [Services] --> [MCP Orchestrator]
 }
+
 @enduml
+
 
 
 ## 🚀 Getting Started (Docker)
