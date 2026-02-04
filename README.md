@@ -90,40 +90,52 @@ This project simulates a **real-world emergency response platform**, combining m
 
 ## 📂 Project Structure
 
-![Project Structure Diagram](https://www.plantuml.com/plantuml/svg/~h@startuml
-skinparam packageStyle rectangle
-skinparam arrowColor #444
-skinparam linetype ortho
-
-package "Campus-Safety-AI-Reporting-System" {
-
-  package "frontend" {
-    [Pages] --> [API Client]
-    [Components] --> [API Client]
-    [Pages] --> [Socket]
-  }
-
-  package "backend" {
-    [Server] --> [Routes]
-    [Routes] --> [Middleware]
-    [Routes] --> [Controllers]
-    [Controllers] --> [Services]
-    [Services] --> [Models]
-    [Models] --> [Database]
-  }
-
-  package "AI & MCP Layer" {
-    [MCP Orchestrator] --> [AI Service]
-    [MCP Orchestrator] --> [Vision Service]
-    [MCP Orchestrator] --> [Duplicate Detection]
-  }
-
-  [API Client] --> [Server]
-  [Socket] --> [Server]
-  [Services] --> [MCP Orchestrator]
-}
-@enduml)
-
+Campus-Safety-AI-Reporting-System
+│
+├── frontend
+│   ├── Pages
+│   │     ├── Home / Report / Track
+│   │     └── Admin Pages
+│   │
+│   ├── Components
+│   │     ├── AlertsBanner
+│   │     ├── IncidentTable
+│   │     └── StatCard
+│   │
+│   ├── API Client  ────────────────┐
+│   └── Socket (WebSocket) ────────┐│
+│                                   ││
+│                                   ▼▼
+├── backend
+│   ├── Server (Express / Node)
+│   │        │
+│   │        ▼
+│   ├── Routes
+│   │        │
+│   │        ▼
+│   ├── Middleware
+│   │        │
+│   │        ▼
+│   ├── Controllers
+│   │        │
+│   │        ▼
+│   ├── Services
+│   │        │
+│   │        ├───────────────┐
+│   │        ▼               │
+│   ├── Models               │
+│   │        │               │
+│   │        ▼               │
+│   └── Database             │
+│                            │
+│                            ▼
+├── AI & MCP Layer
+│   ├── MCP Orchestrator
+│   │        ├── AI Service (NLP / LLM)
+│   │        ├── Vision Service (Image Analysis)
+│   │        └── Duplicate Detection
+│
+└── Docker / Nginx / Deployment
 
 
 
