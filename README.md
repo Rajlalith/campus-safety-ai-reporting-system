@@ -88,56 +88,32 @@ This project simulates a **real-world emergency response platform**, combining m
 
 ## 🗂️ Project Structure
 
-## 📂 Project Structure
-
-Campus-Safety-AI-Reporting-System
+```text
+Campus-Safety-AI-Reporting-System/
+├── frontend/                # Vite + React app
+│   ├── public/
+│   └── src/
+│       ├── api/
+│       ├── assets/
+│       ├── components/
+│       ├── layouts/
+│       └── pages/
 │
-├── frontend
+├── backend/                 # Express + Node.js server
+│   ├── src/
+│   │   ├── config/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── mcp/
 │   │
-│   ├── Pages
-│   │     ├── Home
-│   │     ├── Report
-│   │     ├── Track
-│   │     └── Admin Pages
-│   │
-│   ├── Components
-│   │     ├── AlertsBanner
-│   │     ├── IncidentTable
-│   │     └── StatCard
-│   │
-│   ├── API Client
-│   │     │
-│   │     └───► Backend Server (REST)
-│   │
-│   └── Socket (WebSocket)
-│         │
-│         └───► Backend Server (Real-time)
+│   └── server.js
 │
-├── backend
-│   │
-│   ├── Server (Express / Node)
-│   │     │
-│   │     └──► Routes
-│   │           │
-│   │           └──► Middleware
-│   │                 │
-│   │                 └──► Controllers
-│   │                       │
-│   │                       └──► Services
-│   │                             │
-│   │                             ├──► Models
-│   │                             │     │
-│   │                             │     └──► Database
-│   │                             │
-│   │                             └──► MCP Orchestrator
-│   │                                   │
-│   │                                   ├──► AI Service (NLP / LLM)
-│   │                                   ├──► Vision Service (Image Analysis)
-│   │                                   └──► Duplicate Detection
+├── docker/                  # Docker & Nginx configuration
 │
-└── Docker / Nginx / Deployment
-
-
+└── README.md                # Project documentation
+```
 
 ## 🚀 Getting Started (Docker)
 
@@ -148,4 +124,5 @@ cd campus-safety-ai-reporting-system
 
 # Start full stack
 docker compose up --build
+
 
